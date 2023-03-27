@@ -18,9 +18,9 @@ import com.example.approomdb.databinding.FragmentAddBinding
 
 class AddFragment : Fragment() {
 
-    private lateinit var bind: FragmentAddBinding
-    private lateinit var mUserModel: UserViewModel
 
+   private lateinit var bind: FragmentAddBinding
+    private lateinit var mUserModel: UserViewModel
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

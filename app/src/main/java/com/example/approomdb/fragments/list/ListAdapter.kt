@@ -5,6 +5,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
 import com.example.approomdb.R
 import com.example.approomdb.data.User
@@ -33,7 +34,8 @@ class ListAdapter: RecyclerView.Adapter<ListAdapter.MyViewHolder>() {
         age_txt.text = currentUser.age.toString()
 
         roulayot.setOnClickListener {
-
+            val action = ListFragmentDirections.actionListFragmentToUpdateFragment(currentUser)
+            holder.itemView.findNavController().navigate(action)
         }
 
     }

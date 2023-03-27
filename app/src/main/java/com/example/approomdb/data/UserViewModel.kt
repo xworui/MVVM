@@ -9,7 +9,7 @@ import kotlinx.coroutines.launch
 
 class UserViewModel(application: Application):AndroidViewModel(application) {
 
-private val readAllData: LiveData<List<User>>
+ val readAllData: LiveData<List<User>>
 private val rep: UserRep
 
 init {
@@ -20,6 +20,11 @@ init {
     fun addUse(user: User){
         viewModelScope.launch(Dispatchers.IO){
             rep.addUse(user)
+        }
+    }
+    fun updateUse(user: User){
+        viewModelScope.launch(Dispatchers.IO){
+            rep.updateUse(user)
         }
     }
 
