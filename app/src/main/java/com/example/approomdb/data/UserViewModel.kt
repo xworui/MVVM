@@ -27,6 +27,17 @@ init {
             rep.updateUse(user)
         }
     }
+    fun deleteUse(user: User){
+        viewModelScope.launch(Dispatchers.IO){
+            rep.deleteUse(user)
+        }
+    }
+    fun deleteAllUse(){
+        viewModelScope.launch(Dispatchers.IO){
+            rep.deleteAllUse()
+        }
+    }
+
 
 
 }

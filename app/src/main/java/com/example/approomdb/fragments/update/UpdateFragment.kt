@@ -1,11 +1,10 @@
 package com.example.approomdb.fragments.update
 
+import android.app.AlertDialog
 import android.os.Bundle
 import android.text.Editable
+import android.view.*
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -38,7 +37,7 @@ class UpdateFragment : Fragment() {
             updateItem()
         }
 
-
+        setHasOptionsMenu(true)
 
         return bind.root    //inflate(R.layout.fragment_update, container, false)
     }
@@ -63,5 +62,32 @@ class UpdateFragment : Fragment() {
         return firstName.isNotEmpty() && lastName.isNotEmpty() && age.isNotEmpty()
     }
 
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        inflater.inflate(R.menu.deletemenu,menu)
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        if (item.itemId == R.id.menu_delete) {
+            deleteUser()
+        }
+        return super.onOptionsItemSelected(item)
+    }
+
+    private fun deleteUser(){
+        val builder = AlertDialog.Builder(requireContext())
+        builder.setPositiveButton("Да"){ _, _ ->
+            mUserModel.deleteUse(args.curentUser)
+            Toast.makeText(requireContext(), "Запись успешно удалена", Toast.LENGTH_SHORT).show()
+            findNavController().navigate(R.id.action_updateFragment_to_listFragment)
+
+
+        }
+        builder.setNegativeButton("Нет"){ _, _ ->}
+        builder.setTitle("Удалить запись?")
+        builder.setMessage("Вы действительно хотите удалить запись: ${args.curentUser.firstName}?")
+        builder.create().show()
+    }
 
 }

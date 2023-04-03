@@ -12,6 +12,13 @@ class UserRep(private var userDao: UserDao){
     suspend  fun updateUse(user: User){
         userDao.updateUser(user)
     }
+    suspend  fun deleteUse(user: User){
+        userDao.deleteUser(user)
 
+    }
+    suspend  fun deleteAllUse(){
+        userDao.deleteAllUser()
+
+    }
 
 }
